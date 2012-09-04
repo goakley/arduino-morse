@@ -1,0 +1,9 @@
+MorseOut	KEYWORD1
+setString	KEYWORD2
+start	KEYWORD2
+stop	KEYWORD2
+gracefulStop	KEYWORD2
+isDone	KEYWORD2
+update	KEYWORD2
+setMorsePin	KEYWORD2
+setFrequency	KEYWORD2
