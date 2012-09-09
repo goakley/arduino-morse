@@ -44,6 +44,26 @@ void MorseOut::outputLetter(char c)
   case '8': dash();dash();dash();dot();dot();break;
   case '9': dash();dash();dash();dash();dot();break;
   case '0': dash();dash();dash();dash();dash();break;
+  case '.': dot();dash();dot();dash();dot();dash();break;
+  case ',': dash();dash();dot();dot();dash();dash();break;
+  case ':': dash();dash();dash();dot();dot();dot();break;
+  case '?': dot();dot();dash();dash();dot();dot();break;
+  case '\'': dot();dash();dash();dash();dash();dot();break;
+  case '-': dash();dot();dot();dot();dot();dash();break;
+  case '/': dash();dot();dot();dash();dot();break;
+  case '(': dash();dot();dash();dash();dot();break;
+  case ')': dash();dot();dash();dash();dot();dash();break;
+  case '"': dot();dash();dot();dot();dash();dot();break;
+  case '=': dash();dot();dot();dot();dash();break;
+  case 0x06: dot();dot();dot();dash();dot();break; // ACK
+  case 0x15: dot();dot();dot();dot();dot();dot();dot();dot();break; // NAK
+  case '+': dot();dash();dot();dash();dot();break;
+  case 0x05: dash();dot();dash();break; // ENQ
+  case 0x16: dot();dash();dot();dot();dot();break; // SYN
+  case 0x04: dot();dot();dot();dash();dot();dash();break; // EOT
+  case 0x02: dash();dot();dash();dot();dash();break; // STX
+  case '*': dash();dot();dot();dash();break; // SAME AS 'x'
+  case '@': dot();dash();dash();dot();dash();dot();break;
   default: delay(_freq);
   }
   delay(_freq*3);
