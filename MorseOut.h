@@ -14,14 +14,12 @@ class MorseOut
 {
   private:
     byte _pin;
-    unsigned int _freq;
-	char* message;
-	bool isLooping;
-	bool isDisplaying;
-	byte letterIndex;
-	unsigned long letterStartTime;
-	void setLight(char, unsigned long);
-	unsigned int getDuration(char);
+	unsigned int _freq;
+	char* _messageBuffer;
+	unsigned int _bufferCapacity;
+	unsigned int _bufferSize;
+	unsigned int _bufferPointer;
+	bool _doFlush;
   public:
     /* Constructor
 	 * Creates a new MorseOut object, with the specified 
@@ -29,50 +27,27 @@ class MorseOut
 	 * the length that one dot is displayed
 	 */
     MorseOut(byte = 13, unsigned int = 200);
-	/* setString
-	 * Associates the specified character array / string 
-	 * with this MorseOut object
-	 * Returns false if unsuccessful (currently outputting)
+	/* pushData
+	 * Pushes a string of data onto the queue
+	 * Returns false if there is no room for the specified data
 	 */
-	bool setString(char*);
-	bool setString(String &);
-	/* start
-	 * Outputs the morse code sequence, loops if specified
-	 * Returns false if already outputting
+	bool pushData(char);
+	bool pushData(char*);
+	bool pushData(String);
+	/* isIdle
+	 * Returns true if the queue is empty
 	 */
-	bool start(bool = false);
-	/* stop
-	 * Instantly stops outputting the morse code
-	 * Returns false if already stopped
+	bool isIdle();
+	/* flush
+	 * Clears the buffer after the currently executing character 
+	 * has completed
 	 */
-	bool stop();
-	/* gracefulStop
-	 * Stops outputting the morse code after the current iteration 
-	 * of the code finishes
-	 */
-	void gracefulStop();
-	/* isDone
-	 * Returns true if the MorseOut object is currently not 
-	 * outputting anything
-	 */
-	bool isDone();
+	void flush();
 	/* update
-	 * Updates (advances, continues) the output of the morse code 
-	 * associated with this MorseOut object
+	 * Updates the output
+	 * This needs to be called regularly
 	 */
 	void update();
-	/* setMorsePin
-	 * Sets what pin this MorseOut object outputs to; 
-	 * cannot be changed while the object is outputting
-	 * Returns true if set successfully
-	 */
-    bool setMorsePin(byte);
-	/* setFrequency
-	 * Sets the frequency at which this MorseOut object outputs; 
-	 * cannot be changed while the object is outputting
-	 * Returns true if set successfully
-	 */
-    bool setFrequency(unsigned int);
 };
 
 #endif
